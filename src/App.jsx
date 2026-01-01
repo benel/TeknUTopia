@@ -2,7 +2,11 @@ import { generateRandomLightColor } from 'make-random-color'
 import data from './assets/sample_data.json'
 import './App.css'
 
-const colors = data.reduce(
+const contributionsData = data.filter(({skill, course}) => skill && course)
+
+const skillBlocksData = data.filter(({skill, title}) => skill && title)
+
+const colors = contributionsData.reduce(
   (result, {course}) => result[course]
     ? result 
     : {...result, [course]: generateRandomLightColor()}, 
@@ -17,7 +21,7 @@ function App() {
       </header>
       <main className="container grid">
         { Object.entries(
-            Object.groupBy(data, ({skill}) => skill)
+            Object.groupBy(contributionsData, ({skill}) => skill)
           ).map(([skill, contributions], i) =>
             <SkillBlock {...{skill, contributions}} key={i} />
           )
@@ -28,9 +32,12 @@ function App() {
 }
 
 function SkillBlock({skill, contributions}) {
+  const {title} = skillBlocksData.find(x => x.skill.toString() === skill.toString());
   return (
     <article>
-      <header> {skill} </header>
+      <header>
+        <h3> {title} </h3>
+      </header>
       { contributions.map((y, j) =>
         <Contribution {...y} key={j} />
       )}

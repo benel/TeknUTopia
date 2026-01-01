@@ -1,4 +1,9 @@
 [
+  { "skill": ["ISI", "A"], "title": "Analyser le contexte" },
+  { "skill": ["ISI", "B"], "title": "Concevoir une solution" },
+  { "skill": ["ISI", "C"], "title": "Implémenter une solution" },
+  { "skill": ["ISI", "E"], "title": "Gérer des équipes-projets" },
+  { "skill": ["ISI", "D"], "title": "Déployer la solution" },
   { "course": "IF14", "skill": ["ISI", "A"] },
   { "course": "GL02", "skill": ["ISI", "B"] },
   { "course": "GL02", "skill": ["ISI", "C"] },
