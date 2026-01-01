@@ -1,5 +1,13 @@
+import { generateRandomLightColor } from 'make-random-color'
 import data from './assets/sample_data.json'
 import './App.css'
+
+const colors = data.reduce(
+  (result, {course}) => result[course]
+    ? result 
+    : {...result, [course]: generateRandomLightColor()}, 
+  {}
+)
 
 function App() {
   return (
@@ -32,7 +40,7 @@ function SkillBlock({skill, contributions}) {
 
 function Contribution({course}) {
   return (
-    <article>
+    <article style={{background: colors[course]}} >
       {course}
     </article>
   )
