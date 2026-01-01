@@ -7,7 +7,7 @@ function App() {
       <header>
         <h1> TeknUTopia </h1>
       </header>
-      <main className="container">
+      <main className="container grid">
         { Object.entries(
             Object.groupBy(data, ({skill}) => skill)
           ).map(([skill, contributions], i) =>
@@ -21,12 +21,12 @@ function App() {
 
 function SkillBlock({skill, contributions}) {
   return (
-    <div>
+    <article>
       <header> {skill} </header>
       { contributions.map((y, j) =>
         <Contribution {...y} key={j} />
       )}
-    </div>
+    </article>
   );
 }
 
