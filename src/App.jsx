@@ -86,12 +86,14 @@ function SkillBlock({skill, title, selectedCourses}) {
   const contributions = contributionsData.filter(x => x.skill.toString() === skill.toString())
   return (
     <Card>
-      <Card.Title> {title} </Card.Title>
-      <div className="contribution-wrapper">
-        { contributions.map((y, j) =>
-          <Contribution {...y} {...{selectedCourses}} key={j} />
-        )}
-      </div>
+      <Card.Body>
+        <Card.Title> {title} </Card.Title>
+        <div className="contribution-wrapper">
+          { contributions.map((y, j) =>
+            <Contribution {...y} {...{selectedCourses}} key={j} />
+          )}
+        </div>
+      </Card.Body>
     </Card>
   );
 }
