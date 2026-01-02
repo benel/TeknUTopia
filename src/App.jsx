@@ -18,6 +18,7 @@ const colors = contributionsData.reduce(
 
 function App() {
   const [selectedCourses, setSelectedCourses] = useState([])  
+  const coursesBySession = Object.groupBy(courseData, ({level, session}) => [level,session])
 
   function toggleCourse(id) {
     if (selectedCourses.includes(id)) {
@@ -43,13 +44,26 @@ function App() {
           <legend>
             <h2> Parcours à la carte </h2>
           </legend>
-          { courseData.map(({course, title}) =>
-              <Course {...{course, title, toggleCourse}} key={course} />
+          { Object.entries(coursesBySession).map(([session, courses]) => 
+              <CourseSession {...{session, courses, toggleCourse}} key={session} />
             )
           }
         </fieldset>
       </main>    
     </>
+  )
+}
+
+function CourseSession({session, courses, toggleCourse}) {
+  const title = session.split(',')
+  return (
+    <details>
+      <summary> {title[0]} ({title[1]}) </summary>
+      { courses.map(({course, title}) =>
+          <Course {...{course, title, toggleCourse}} key={course} />
+        )
+      }
+    </details>
   )
 }
 
