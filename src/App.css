@@ -1,4 +1,18 @@
-summary::first-letter {
-    text-transform: capitalize;
+.accordion-button {
+  text-transform: capitalize;
 }
 
+.contribution-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2em;
+  margin: 0.2em;
+}
+
+.contribution {
+  border-radius: 1em;
+  width: 4em;
+  height: 4em;
+  align-items: center;
+  justify-content: center;
+}
