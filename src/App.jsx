@@ -45,11 +45,17 @@ function App() {
         <Row>
           <Col md={8} >
             <CardGroup>
-              { skillBlocksData.map(({skill, title}, i) =>
-                  <SkillBlock {...{skill, title, selectedCourses}} key={i} />
-                )
+              { skillBlocksData.filter(x => x.display !== 'horizontal')
+                  .map(({skill, title}, i) =>
+                    <SkillBlock {...{skill, title, selectedCourses}} key={i} />
+                  )
               }
             </CardGroup>
+            { skillBlocksData.filter(x => x.display === 'horizontal')
+                .map(({skill, title}, i) =>
+                  <SkillBlock {...{skill, title, selectedCourses}} key={i} />
+                )
+            }
           </Col>
           <Col>
             <fieldset>

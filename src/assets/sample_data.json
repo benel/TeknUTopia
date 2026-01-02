@@ -2,7 +2,7 @@
   { "skill": ["ISI", "A"], "title": "Analyser le contexte" },
   { "skill": ["ISI", "B"], "title": "Concevoir une solution" },
   { "skill": ["ISI", "C"], "title": "Implémenter une solution" },
-  { "skill": ["ISI", "E"], "title": "Gérer des équipes-projets" },
+  { "skill": ["ISI", "E"], "title": "Gérer des équipes-projets", "display": "horizontal"},
   { "skill": ["ISI", "D"], "title": "Déployer la solution" },
 
   { "course": "IF14", "title": "Modéliser une organisation et ses métiers", "level": "base", "session":"automne" },
