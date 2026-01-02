@@ -45,10 +45,8 @@ function App() {
         <Row>
           <Col md={8} >
             <CardGroup>
-              { Object.entries(
-                  Object.groupBy(contributionsData, ({skill}) => skill)
-                ).map(([skill, contributions], i) =>
-                  <SkillBlock {...{skill, contributions, selectedCourses}} key={i} />
+              { skillBlocksData.map(({skill, title}, i) =>
+                  <SkillBlock {...{skill, title, selectedCourses}} key={i} />
                 )
               }
             </CardGroup>
@@ -84,8 +82,8 @@ function CourseSession({session, courses, toggleCourse}) {
   )
 }
 
-function SkillBlock({skill, contributions, selectedCourses}) {
-  const {title} = skillBlocksData.find(x => x.skill.toString() === skill.toString());
+function SkillBlock({skill, title, selectedCourses}) {
+  const contributions = contributionsData.filter(x => x.skill.toString() === skill.toString())
   return (
     <Card>
       <Card.Title> {title} </Card.Title>
