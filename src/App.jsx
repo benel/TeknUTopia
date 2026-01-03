@@ -1,12 +1,12 @@
 import { generateRandomLightColor } from 'make-random-color'
 import { useState } from 'react'
-import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import CardGroup from 'react-bootstrap/CardGroup';
-import Accordion from 'react-bootstrap/Accordion';
+import Navbar from 'react-bootstrap/Navbar'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Card from 'react-bootstrap/Card'
+import CardGroup from 'react-bootstrap/CardGroup'
+import Accordion from 'react-bootstrap/Accordion'
 import data from './assets/sample_data.json'
 import './App.css'
 
@@ -101,11 +101,11 @@ function SkillBlock({skill, title, selectedCourses}) {
         </div>
       </Card.Body>
     </Card>
-  );
+  )
 }
 
 function Contribution({course, selectedCourses}) {
-  const display = selectedCourses.includes(course) ? 'inline-flex' : 'none';
+  const display = selectedCourses.includes(course) ? 'inline-flex' : 'none'
   return (
     <span style={{'background': colors[course], display}} className='contribution'>
       {course}
