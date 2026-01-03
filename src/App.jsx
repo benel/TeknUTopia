@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import CardGroup from 'react-bootstrap/CardGroup'
 import Accordion from 'react-bootstrap/Accordion'
-import data from './assets/sample_data.json'
+import data from './assets/data.json'
 import './App.css'
 
 const contributionsData = data.filter(({skill, course}) => skill && course)
