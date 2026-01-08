@@ -128,7 +128,7 @@ function Course({course, title, future, tags = [], toggleCourse}) {
 
 function Report({selectedCourses}) {
   const report = courseData.filter(({course}) => selectedCourses.includes(course))
-    .reduce((l, {tags}) => [...l, ...(tags ?? [])], [])
+    .reduce((l, {tags, level}) => [...l, ...(tags ?? []), level], [])
     .reduce((l, x) => {
       l[x] = (l[x] ?? 0) + 1
       return l
@@ -137,7 +137,7 @@ function Report({selectedCourses}) {
   return (
     <Table bordered hover>
       <tbody>
-      { Object.entries(report).map(([k, v]) =>
+      { Object.entries(report).sort().map(([k, v]) =>
         <tr key={k}>
           <th>{k}</th>
           <td>{v}</td>
