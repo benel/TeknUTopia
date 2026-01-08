@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import CardGroup from 'react-bootstrap/CardGroup'
 import Accordion from 'react-bootstrap/Accordion'
+import Table from 'react-bootstrap/Table'
 import data from './assets/data.json'
 import './App.css'
 
@@ -66,6 +67,7 @@ function App() {
                 }
               </Accordion>
             </fieldset>
+            <Report {...{selectedCourses}} />
           </Col>
         </Row>
       </Container>
@@ -79,8 +81,8 @@ function CourseSession({session, courses, toggleCourse}) {
     <Accordion.Item eventKey={session}>
       <Accordion.Header> {title[0]} ({title[1]}) </Accordion.Header>
       <Accordion.Body>
-        { courses.map(({course, title, future}) =>
-            <Course {...{course, title, future, toggleCourse}} key={course} />
+        { courses.map(({course, title, future, tags}) =>
+            <Course {...{course, title, future, tags, toggleCourse}} key={course} />
           )
         }
       </Accordion.Body>
@@ -113,15 +115,36 @@ function Contribution({course, selectedCourses}) {
   )
 }
 
-function Course({course, title, future, toggleCourse}) {
+function Course({course, title, future, tags = [], toggleCourse}) {
   return (
     <label>
       <input type="checkbox" name={course}
         onChange={() => toggleCourse(course)}
-      />
-        <b> {course} </b> — {title}
-        {future && ' (bientôt)'}
+      /> <b>{course}</b> {tags.join('')} — {title}
+      {future && ' (bientôt)'}
     </label>
+  )
+}
+
+function Report({selectedCourses}) {
+  const report = courseData.filter(({course}) => selectedCourses.includes(course))
+    .reduce((l, {tags}) => [...l, ...(tags ?? [])], [])
+    .reduce((l, x) => {
+      l[x] = (l[x] ?? 0) + 1
+      return l
+    }, {})
+
+  return (
+    <Table bordered hover>
+      <tbody>
+      { Object.entries(report).map(([k, v]) =>
+        <tr key={k}>
+          <th>{k}</th>
+          <td>{v}</td>
+        </tr>
+      ) }
+      </tbody>
+    </Table>
   )
 }
 
