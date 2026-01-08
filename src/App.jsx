@@ -8,6 +8,8 @@ import Card from 'react-bootstrap/Card'
 import CardGroup from 'react-bootstrap/CardGroup'
 import Accordion from 'react-bootstrap/Accordion'
 import Table from 'react-bootstrap/Table'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Tooltip from 'react-bootstrap/Tooltip'
 import data from './assets/data.json'
 import './App.css'
 
@@ -16,6 +18,8 @@ const contributionsData = data.filter(({skill, course}) => skill && course)
 const skillBlocksData = data.filter(({skill, title}) => skill && title)
 
 const courseData = data.filter(({course, title}) => course && title)
+
+const tooltipData = data.filter(({tag, title}) => tag && title)
 
 const colors = contributionsData.reduce(
   (result, {course}) => result[course]
@@ -120,7 +124,7 @@ function Course({course, title, future, tags = [], toggleCourse}) {
     <label>
       <input type="checkbox" name={course}
         onChange={() => toggleCourse(course)}
-      /> <b>{course}</b> {tags.join('')} — {title}
+      /> <b>{course}</b> <Tags {...{tags}} /> — {title}
       {future && ' (bientôt)'}
     </label>
   )
@@ -139,12 +143,25 @@ function Report({selectedCourses}) {
       <tbody>
       { Object.entries(report).sort().map(([k, v]) =>
         <tr key={k}>
-          <th>{k}</th>
+          <th> <Tags tags={[k]} /> </th>
           <td>{v}</td>
         </tr>
       ) }
       </tbody>
     </Table>
+  )
+}
+
+function Tags({tags}) {
+  const tooltips = tags.map(x =>
+    tooltipData.find(({tag}) => tag === x) || {tag: x}
+  )
+
+  return tooltips.map(({tag, title}) => title
+    ? <OverlayTrigger overlay={ <Tooltip> {title} </Tooltip> } key={tag} >
+      <span>{tag}</span>
+    </OverlayTrigger>
+    : <span key={tag}>{tag}</span> 
   )
 }
 

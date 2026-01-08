@@ -37,6 +37,11 @@
   { "course": "IF40", "title": "Définir la stratégie de transformation du SI", "future": true, "level": "filière", "session":"automne", "type": "TM" },
   { "course": "IF46", "title": "Automatiser les processus d'intégration et de déploiement", "future": true, "level": "filière", "session":"automne", "type": "TM" },
 
+  { "tag": "💡", "title": "Initiation à la Recherche" },
+  { "tag": "🚀", "title": "Recherche & développement" },
+  { "tag": "🌍", "title": "Responsabilité sociétale et environnementale" },
+  { "tag": "💼", "title": "Retour d'expérience professionnelle" },
+
   { "course": "IF14", "skill": ["ISI", "A"] },
   { "course": "GL02", "skill": ["ISI", "B"] },
   { "course": "GL02", "skill": ["ISI", "C"] },
