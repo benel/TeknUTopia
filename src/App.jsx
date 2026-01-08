@@ -128,7 +128,7 @@ function Course({course, title, future, tags = [], toggleCourse}) {
 
 function Report({selectedCourses}) {
   const report = courseData.filter(({course}) => selectedCourses.includes(course))
-    .reduce((l, {tags, level}) => [...l, ...(tags ?? []), level], [])
+    .reduce((l, {tags, level, type}) => [...l, ...(tags ?? []), level, type], [])
     .reduce((l, x) => {
       l[x] = (l[x] ?? 0) + 1
       return l
