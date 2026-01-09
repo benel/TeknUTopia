@@ -67,6 +67,7 @@
   { "course": "LO10", "skill": ["ISI", "B"] },
   { "course": "LO10", "skill": ["ISI", "C"] },
   { "course": "IF08", "skill": ["ISI", "E"] },
+  { "course": "IF05", "skill": ["ISI", "B"] },
   { "course": "IF05", "skill": ["ISI", "C"] },
   { "course": "IF05", "skill": ["ISI", "E"] },
   { "course": "IF31", "skill": ["ISI", "A"] },
