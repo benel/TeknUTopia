@@ -10,5 +10,5 @@ export default defineConfig({
       },
     }),
   ],
-  base: '/TeknUTopia/',
+  base: (process.env.NODE_ENV === 'production') ? '/TeknUTopia/' : '/',
 })
