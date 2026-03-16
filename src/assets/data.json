@@ -1,9 +1,9 @@
 [
   { "skill": ["ISI", "A"], "title": "Analyser le contexte" },
   { "skill": ["ISI", "B"], "title": "Concevoir une solution" },
-  { "skill": ["ISI", "C"], "title": "Implémenter une solution" },
-  { "skill": ["ISI", "E"], "title": "Gérer un projet", "display": "horizontal"},
-  { "skill": ["ISI", "D"], "title": "Déployer une solution" },
+  { "skill": ["ISI", "C"], "title": "Mettre en œuvre une solution" },
+  { "skill": ["ISI", "E"], "title": "Animer une équipe-projet", "display": "horizontal"},
+  { "skill": ["ISI", "D"], "title": "Accompagner le déploiement et les nouveaux usages" },
 
   { "course": "IF14", "title": "Modéliser une organisation et ses métiers", "level": "base", "session":"automne", "type": "TM" },
   { "course": "GL02", "title": "Fondements de l'ingénierie logicielle", "level": "base", "session":"automne", "type": "CS" },
