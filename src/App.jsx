@@ -10,6 +10,7 @@ import Accordion from 'react-bootstrap/Accordion'
 import Table from 'react-bootstrap/Table'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
+import Button from 'react-bootstrap/Button'
 import data from './assets/data.json'
 import './App.css'
 
@@ -32,6 +33,18 @@ function App() {
   const [selectedCourses, setSelectedCourses] = useState([])  
   const coursesBySession = Object.groupBy(courseData, ({level, session}) => [level,session])
 
+  // Extraire tous les IDs de cours
+const allCourseIds = courseData.map(({course}) => course)
+
+function selectAll() {
+  setSelectedCourses(allCourseIds)
+}
+
+function unselectAll() {
+  setSelectedCourses([])
+}
+
+
   function toggleCourse(id) {
     if (selectedCourses.includes(id)) {
       setSelectedCourses(selectedCourses.filter(x => x !== id))
@@ -45,10 +58,13 @@ function App() {
       <Navbar expand="md">
         <Navbar.Brand> TeknUTopia </Navbar.Brand>
       </Navbar>
-    
       <Container>
         <Row>
           <Col md={8} >
+
+            <Button onClick={selectAll}>Tout sélectionner</Button>
+            <Button onClick={unselectAll}>Tout désélectionner</Button>
+
             <CardGroup>
               { skillBlocksData.filter(x => x.display !== 'horizontal')
                   .map(({skill, title}, i) =>
