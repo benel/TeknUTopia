@@ -2,7 +2,6 @@ name: Deploy static content to Pages
 
 on:
   push:
-    branches: ["main"]
   workflow_dispatch: # Manual trigger
 
 permissions:
@@ -15,7 +14,34 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  test: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Set up NodeJS
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - name: Install frontend dependencies
+        run: npm ci
+      - name: Build frontend
+        run: npm run build
+      - name: Save frontend build for later
+        uses: actions/upload-artifact@v7
+        with:
+          name: frontend-build
+          path: dist
+      - name: Start frontend
+        run: docker run -p 5173:80 -v "$(pwd)/dist:/usr/share/nginx/html:ro" -d nginx:alpine
+      - name: Run acceptance tests
+        run: npm run test
+
   deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
