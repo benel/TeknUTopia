@@ -5,7 +5,7 @@ import { createEsbuildPlugin } from '@badeball/cypress-cucumber-preprocessor/esb
 
 export default defineConfig({
   e2e: {
-    baseUrl: 'http://localhost:5173',
+    baseUrl: 'http://localhost:5173/TeknUTopia',
     specPattern: '**/*.feature',
     supportFile: false,
     defaultCommandTimeout: 6000,

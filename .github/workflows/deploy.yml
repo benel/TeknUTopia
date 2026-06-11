@@ -35,7 +35,7 @@ jobs:
           name: frontend-build
           path: dist
       - name: Start frontend
-        run: docker run -p 5173:80 -v "$(pwd)/dist:/usr/share/nginx/html:ro" -d nginx:alpine
+        run: docker run -p 5173:80 -v "$(pwd)/dist:/usr/share/nginx/html/TeknUTopia:ro" -d nginx:alpine
       - name: Run acceptance tests
         run: npm run test
 
