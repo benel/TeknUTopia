@@ -31,6 +31,7 @@ const colors = contributionsData.reduce(
 function App() {
   const [selectedCourses, setSelectedCourses] = useState([])  
   const coursesBySession = Object.groupBy(courseData, ({level, session}) => [level,session])
+  const defaultKey = decodeURI(window.location.hash.slice(1))
 
   function toggleCourse(id) {
     if (selectedCourses.includes(id)) {
@@ -64,7 +65,7 @@ function App() {
           </Col>
           <Col>
             <fieldset>
-              <Accordion>
+              <Accordion defaultActiveKey={defaultKey}>
                 { Object.entries(coursesBySession).map(([session, courses]) => 
                     <CourseSession {...{session, courses, toggleCourse}} key={session} />
                   )
