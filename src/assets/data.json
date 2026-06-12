@@ -25,7 +25,6 @@
   { "course": "IF31", "title": "Analyser et concevoir les plateformes de l'économie collaborative", "level": "filière", "session":"printemps", "tags":["💡", "🚀", "🌍"], "type": "TM" },
   { "course": "LO12", "title": "Comprendre et appliquer les bases de l'intelligence artificielle", "level": "base", "session":"printemps", "type": "CS" },
   { "course": "IF34", "title": "Maitriser les technologies du SI", "level": "filière", "session":"printemps", "type": "TM" },
-  { "course": "IF42", "title": "Piloter la transformation du système d'information", "future": true, "level": "filière", "session":"printemps", "type": "CS" },
   { "course": "LO17", "title": "Architectures Cloud et virtualisation", "level": "base", "session":"printemps", "type": "TM" },
   { "course": "IF06 EN", "title": "Computer-Supported Cooperative Work", "level": "filière", "session":"automne", "tags":["💡", "🌍"], "type": "CS" },
   { "course": "GL03", "title": "Réduire l'impact environnemental d'un service numérique", "level": "filière", "session":"automne", "tags":["🚀", "🌍"], "type": "CS" },
@@ -35,7 +34,6 @@
   { "course": "IF17", "title": "Valoriser des données pour la décision", "level": "filière", "session":"automne", "tags":["💡"], "type": "CS" },
   { "course": "IF28", "title": "Fouille de données et connaissances", "level": "filière", "session":"automne", "type": "TM" },
   { "course": "IF40", "title": "Définir la stratégie de transformation du système d'information", "future": true, "level": "filière", "session":"automne", "type": "TM" },
-  { "course": "IF46", "title": "Automatiser les processus d'intégration et de déploiement", "future": true, "level": "filière", "session":"automne", "type": "TM" },
 
   { "tag": "💡", "title": "Initiation à la Recherche" },
   { "tag": "🚀", "title": "Recherche & développement" },
