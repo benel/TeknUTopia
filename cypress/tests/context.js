@@ -21,3 +21,16 @@ Soit(
   }
 );
 
+Soit("un parcours d'étudiant encore vide", () => {
+  cy.visit('/');
+  cy.get('.contribution:visible').should('have.length', 0);
+});
+    
+Soit(
+  "un parcours d'étudiant contenant {string}",
+  (course) => {
+    cy.visit('/');
+    cy.get(`input[name="${course}"]`).check({ force: true });
+  }
+);
+

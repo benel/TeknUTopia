@@ -7,3 +7,11 @@ Quand(
   }
 );
 
+Quand('je sélectionne tous les cours', () => {
+  cy.contains('Tout sélectionner').click();
+});
+
+Quand('je désélectionne tous les cours', () => {
+  cy.contains('Tout désélectionner').click();
+});
+
