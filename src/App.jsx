@@ -86,8 +86,8 @@ function CourseSession({session, courses, toggleCourse}) {
     <Accordion.Item eventKey={session}>
       <Accordion.Header> {title[0]} ({title[1]}) </Accordion.Header>
       <Accordion.Body>
-        { courses.map(({course, title, future, tags}) =>
-            <Course {...{course, title, future, tags, toggleCourse}} key={course} />
+        { courses.map(({course, title, future, tags, href}) =>
+            <Course {...{course, title, future, tags, href, toggleCourse}} key={course} />
           )
         }
       </Accordion.Body>
@@ -120,12 +120,12 @@ function Contribution({course, selectedCourses}) {
   )
 }
 
-function Course({course, title, future, tags = [], toggleCourse}) {
+function Course({course, title, future, tags = [], href, toggleCourse}) {
   return (
     <label>
       <input type="checkbox" name={course}
         onChange={() => toggleCourse(course)}
-      /> <b>{course}</b> <Tags {...{tags}} /> — {title}
+      /> <b>{course}</b> <Tags {...{tags}} /> — {title} <a {...{href}} className="info-icon" target="_blank">ℹ️</a>
       {future && ' (bientôt)'}
     </label>
   )

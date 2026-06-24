@@ -26,6 +26,14 @@
   height: 6em;
 }
 
+.info-icon {
+  text-decoration: none;
+}
+
+.info-icon:hover {
+  filter: brightness(1.2);  
+}
+
 html, #root {
   background-color: var(--bs-gray-100);
   margin: 0;
