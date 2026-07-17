@@ -41,6 +41,12 @@ function App() {
     }
   }
 
+  function toggleAllCourses() {
+    const anySelected = selectedCourses.length > 0
+    const allCourseIds = courseData.map(({ course }) => course)
+    setSelectedCourses(anySelected ? [] : allCourseIds)
+  }
+
   return (
     <>
       <Navbar expand="md">
@@ -64,10 +70,18 @@ function App() {
             }
           </Col>
           <Col>
+          <div className="courses-header">
+            <h5>Mes cours</h5>
+            <button type="button" className="btn btn-primary"
+              onClick={toggleAllCourses}
+            >
+              {selectedCourses.length > 0 ? 'Tout désélectionner' : 'Tout sélectionner'}
+            </button>
+          </div>
             <fieldset>
               <Accordion defaultActiveKey={defaultKey}>
                 { Object.entries(coursesBySession).map(([session, courses]) => 
-                    <CourseSession {...{session, courses, toggleCourse}} key={session} />
+                    <CourseSession {...{session, courses, selectedCourses, toggleCourse}} key={session} />
                   )
                 }
               </Accordion>
@@ -80,14 +94,14 @@ function App() {
   )
 }
 
-function CourseSession({session, courses, toggleCourse}) {
+function CourseSession({session, courses, selectedCourses, toggleCourse}) {
   const title = session.split(',')
   return (
     <Accordion.Item eventKey={session}>
       <Accordion.Header> {title[0]} ({title[1]}) </Accordion.Header>
       <Accordion.Body>
         { courses.map(({course, title, future, tags, href}) =>
-            <Course {...{course, title, future, tags, href, toggleCourse}} key={course} />
+            <Course {...{course, title, future, tags, href, selectedCourses, toggleCourse}} key={course} />
           )
         }
       </Accordion.Body>
@@ -120,10 +134,11 @@ function Contribution({course, selectedCourses}) {
   )
 }
 
-function Course({course, title, future, tags = [], href, toggleCourse}) {
+function Course({course, title, future, tags = [], href, selectedCourses, toggleCourse}) {
   return (
     <label>
       <input type="checkbox" name={course}
+        checked={selectedCourses.includes(course)} 
         onChange={() => toggleCourse(course)}
       /> <b>{course}</b> <Tags {...{tags}} /> — {title} <a {...{href}} className="info-icon" target="_blank">ℹ️</a>
       {future && ' (bientôt)'}

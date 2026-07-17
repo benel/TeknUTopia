@@ -48,3 +48,14 @@ th {
   text-transform: capitalize;
 }
 
+.courses-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.courses-header h5 {
+  margin: 0;
+}
+
