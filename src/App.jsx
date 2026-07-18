@@ -1,5 +1,5 @@
 import { generateRandomLightColor } from 'make-random-color'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -29,9 +29,16 @@ const colors = contributionsData.reduce(
 )
 
 function App() {
-  const [selectedCourses, setSelectedCourses] = useState([])  
   const coursesBySession = Object.groupBy(courseData, ({level, session}) => [level,session])
   const defaultKey = decodeURI(window.location.hash.slice(1))
+
+  const [selectedCourses, setSelectedCourses] = useState(() =>
+    JSON.parse(localStorage.getItem("selectedCourses")) || []
+  )
+
+  useEffect(() => {
+    localStorage.setItem("selectedCourses", JSON.stringify(selectedCourses))
+  }, [selectedCourses])
 
   function toggleCourse(id) {
     if (selectedCourses.includes(id)) {
