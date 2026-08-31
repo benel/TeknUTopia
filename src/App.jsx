@@ -66,13 +66,13 @@ function App() {
             <CardGroup>
               { skillBlocksData.filter(x => x.display !== 'horizontal')
                   .map(({skill, title}, i) =>
-                    <SkillBlock {...{skill, title, selectedCourses}} key={i} />
+                    <SkillBlock {...{skill, title, selectedCourses, courseData}} key={i} />
                   )
               }
             </CardGroup>
             { skillBlocksData.filter(x => x.display === 'horizontal')
                 .map(({skill, title}, i) =>
-                  <SkillBlock {...{skill, title, selectedCourses}} key={i} />
+                  <SkillBlock {...{skill, title, selectedCourses, courseData}} key={i} />
                 )
             }
           </Col>
@@ -116,7 +116,7 @@ function CourseSession({session, courses, selectedCourses, toggleCourse}) {
   )
 }
 
-function SkillBlock({skill, title, selectedCourses}) {
+function SkillBlock({skill, title, selectedCourses, courseData}) {
   const contributions = contributionsData.filter(x => x.skill.toString() === skill.toString())
   return (
     <Card>
@@ -124,7 +124,7 @@ function SkillBlock({skill, title, selectedCourses}) {
         <Card.Title> {title} </Card.Title>
         <div className="contribution-wrapper">
           { contributions.map((y, j) =>
-            <Contribution {...y} {...{selectedCourses}} key={j} />
+            <Contribution {...y} {...{selectedCourses, courseData}} key={j} />
           )}
         </div>
       </Card.Body>
@@ -132,12 +132,15 @@ function SkillBlock({skill, title, selectedCourses}) {
   )
 }
 
-function Contribution({course, selectedCourses}) {
+function Contribution({course, selectedCourses, courseData}) {
   const display = selectedCourses.includes(course) ? 'inline-flex' : 'none'
+  const title = courseData.find(c => c.course === course)?.title
   return (
-    <span style={{'background': colors[course], display}} className='contribution'>
-      {course}
-    </span>
+    <OverlayTrigger overlay={ <Tooltip> {title} </Tooltip> }>
+      <span style={{'background': colors[course], display}} className='contribution'>
+        {course}
+      </span>
+    </OverlayTrigger>
   )
 }
 
